@@ -142,6 +142,8 @@ async def fetch_agg_trades_volume(symbol, start_time, end_time, factor):
 
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params) as response:
+            # if response.status == 429:
+            # if response.status == 418:
             if response.status == 200:
                 trades = await response.json()
                 is_count_market_buyers = factor == 1
